@@ -1,0 +1,10 @@
+---
+- name: Print os facts
+  hosts: all
+  tasks:
+    - name: Print OS []
+      ansible.legacy.debug:
+        msg: "{{ ansible_distribution }}"
+    - name: Print fact
+      ansible.legacy.debug:
+        msg: "{{ some_fact }}"
