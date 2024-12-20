@@ -1,5 +1,5 @@
 ---
 clickhouse:
   hosts:
-    clickhouse-01:
-      ansible_host: <IP_here>
+    ans-test:
+      ansible_host: 130.193.39.23

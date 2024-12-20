@@ -4,3 +4,5 @@ clickhouse_packages:
   - clickhouse-client
   - clickhouse-server
   - clickhouse-common-static
+vector_version: "0.43.1"
+vector_arh_file: "vector-{{ vector_version }}-x86_64-unknown-linux-musl"
