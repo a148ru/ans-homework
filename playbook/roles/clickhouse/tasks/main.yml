@@ -16,14 +16,14 @@
         mode: '0755'
     - name: Add clickhouse in apt lists
       ansible.builtin.apt_repository:
-      repo: "deb [signed-by=/usr/share/keyrings/clickhouse-keyring.asc] https://packages.clickhouse.com/deb stable main"
+        repo: "deb [signed-by=/usr/share/keyrings/clickhouse-keyring.asc] https://packages.clickhouse.com/deb stable main"
 - name: Install Clickhouse service
   become: true
   ansible.builtin.apt:
     name:
       - clickhouse-common-static={{ clickhouse_version }}
       - clickhouse-client={{ clickhouse_version }}
-       - clickhouse-server={{ clickhouse_version }}
+      - clickhouse-server={{ clickhouse_version }}
   notify: Start clickhouse service
 - name: Flush handlers
   ansible.builtin.meta: flush_handlers

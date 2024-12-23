@@ -72,3 +72,7 @@ variable "image" {
     centos7     = "centos-7"
     }
 }
+variable "username" {
+  type = string
+  default = "ubuntu"
+}
