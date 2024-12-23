@@ -1,5 +1,11 @@
 ---
 clickhouse:
   hosts:
-    ans-test:
+    clickhouse-test-01:
       ansible_host: 130.193.39.23
+      ansible_user_name: ubuntu
+vector:
+  hosts:
+    vector-test-01:
+      ansible_host:
+      ansible_user_name: ubuntu
