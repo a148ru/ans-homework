@@ -3,3 +3,10 @@ terraform/*.tfstate.*
 terraform/*.tfstate
 terraform/*.lock.*
 terraform/.terraform
+
+# .tfstate files
+*.tfstate
+*.tfstate.*
+
+# own secret vars store.
+personal.auto.tfvars

@@ -1,11 +1,18 @@
 ---
 clickhouse:
   hosts:
-    clickhouse-test-01:
-      ansible_host: 130.193.39.23
-      ansible_user_name: ubuntu
+    clickhouse-test:
+      ansible_host: 51.250.14.242
+      ansible_ssh_user: ubuntu
+
 vector:
   hosts:
-    vector-test-01:
-      ansible_host:
-      ansible_user_name: ubuntu
+    vector-test:
+      ansible_host: 62.84.125.62
+      ansible_ssh_user: ubuntu
+
+lighthouse:
+  hosts:
+    lighthouse-test:
+      ansible_host: 51.250.91.215
+      ansible_ssh_user: ubuntu
