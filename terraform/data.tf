@@ -5,5 +5,5 @@ resource "local_file" "inventory" {
       instance = yandex_compute_instance.vm
     }
   )
-  filename = "../playbook/inventory/test.yml"
+  filename = "../playbook/inventory/prod.yml"
 }
