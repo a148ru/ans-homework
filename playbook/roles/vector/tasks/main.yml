@@ -1,0 +1,11 @@
+---
+- name: Include task get vector
+  ansible.builtin.include_tasks:
+    file: get_vector.yml
+  tags:
+    - always
+- name: Include task configure and starting vector
+  ansible.builtin.include_tasks:
+    file: install_vector.yml
+  tags:
+    - always

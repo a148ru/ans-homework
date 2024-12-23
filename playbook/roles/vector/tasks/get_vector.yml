@@ -1,0 +1,18 @@
+---
+- name: Get Vector archive
+  block:
+    - name: Make directory for Unarchive Vector
+      ansible.builtin.file:
+        path: "/vector"
+        state: "directory"
+        mode: '0755'
+    - name: Download Vector archive
+      ansible.builtin.get_url:
+        url: https://packages.timber.io/vector/{{ vector_version }}/{{ vector_arh_file }}.tar.gz
+        dest: /tmp/{{ vector_arh_file }}.tar.gz
+        mode: '0755'
+    - name: Unarchive Vector
+      ansible.builtin.unarchive:
+        src: /tmp/{{ vector_arh_file }}.tar.gz
+        remote_src: true
+        dest: /vector
