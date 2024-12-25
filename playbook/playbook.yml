@@ -126,7 +126,7 @@
       become: true
       ansible.builtin.service:
         name: nginx
-        state: restart
+        state: restarted
   tasks:
     - name: Install nginx
       become: true
@@ -134,20 +134,26 @@
         name:
           - nginx
     - name: Copy config nginx
+      become: true
       ansible.builtin.template:
-        src: template/nginx.conf
+        src: templates/nginx.conf
         dest: /etc/nginx/nginx.conf
         mode: '644'
       notify: Restart Nginx server
-
+    - name: Copy default site
+      become: true
+      ansible.builtin.template:
+        src: templates/default
+        dest: /etc/nginx/sites-enabled
+        mode: '644'
+      notify: Restart Nginx server
 - name: Install Lighthouse
   hosts: lighthouse
   tasks:
     - name: Get lighthouse
       become: true
-      become_user: www-data
       ansible.builtin.git:
         repo: https://github.com/VKCOM/lighthouse.git
-        dest: /var/www/lighthouse
+        dest: /var/www/html/lighthouse
         version: master
         single_branch: true

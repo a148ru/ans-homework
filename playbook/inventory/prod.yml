@@ -1,18 +1,19 @@
 ---
+
 clickhouse:
   hosts:
     clickhouse-test:
-      ansible_host: 192.168.100.250
-      ansible_ssh_user: root
+      ansible_host: 51.250.94.95
+      ansible_ssh_user: ubuntu
 
 vector:
   hosts:
     vector-test:
-      ansible_host: 192.168.100.250
-      ansible_ssh_user: root
+      ansible_host: 51.250.15.61
+      ansible_ssh_user: ubuntu
 
 lighthouse:
   hosts:
     lighthouse-test:
-      ansible_host: 192.168.100.250
-      ansible_ssh_user: root
+      ansible_host: 84.201.175.225
+      ansible_ssh_user: ubuntu
