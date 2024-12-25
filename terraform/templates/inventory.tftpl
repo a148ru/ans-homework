@@ -1,0 +1,11 @@
+---
+
+%{~ for i in instance ~}
+
+${i.name}:
+  hosts:
+    ${i.name}-test:
+      ansible_host: ${i.network_interface[0].nat_ip_address}
+      ansible_ssh_user: ${username}
+
+%{~ endfor ~}

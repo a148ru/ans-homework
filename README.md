@@ -1,50 +1,39 @@
-## 
+### 1. Подготовка окружения
 
-### 1. 
+- Используя terraform в Yandex.Cloud
+    ```bash
+    $ terraform -chdir=../terraform apply
+    ```
+    потребуется указать переменные:
+    * token
+    * cloud_id
+    * folder_id
 
-![alt text](image.png)
-
-### 2.
-
-playbook/group_vars/all/example.yml
-```
+- Создать вручную 3 хоста *ubuntu/debian* и подготовить inventory файл (пример `inventory/test.yml`)
+```yaml
 ---
-  some_fact: all default fact
+clickhouse:
+  hosts:
+    clickhouse-test:
+      ansible_host: 192.168.100.200
+      ansible_ssh_user: root
+
+vector:
+  hosts:
+    vector-test:
+      ansible_host: 192.168.100.201
+      ansible_ssh_user: root
+
+lighthouse:
+  hosts:
+    lighthouse-test:
+      ansible_host: 192.168.100.202
+      ansible_ssh_user: root
 
 ```
 
-![alt text](image-1.png)
+### 2. Запуск playbook
 
-### 3-4
-
-не совсем понял про подготовленное окружение, развернул два контейнера
-
-![alt text](image-2.png)
-
-### 5-6
-
-не уверен, что правильно понял задание
-
-![alt text](image-3.png)
-
-### 7-8
-
-дошел до дополнительных заданий и замневался, тут нужно было шифровать файл или конкретные значения?!
-
-![alt text](image-4.png)
-
-### 9
-
-### 10
-
+```bash
+$ ansible-playbook -i inventory/prod.yml playbook.yml
 ```
-  local:
-    hosts:
-      localhost:
-        ansible_connection: local
-```
-
-### 11
-
-![alt text](image-5.png)
-
