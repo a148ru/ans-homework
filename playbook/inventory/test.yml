@@ -2,17 +2,17 @@
 clickhouse:
   hosts:
     clickhouse-test:
-      ansible_host: 192.168.100.250
+      ansible_host: 192.168.100.200
       ansible_ssh_user: root
 
 vector:
   hosts:
     vector-test:
-      ansible_host: 192.168.100.250
+      ansible_host: 192.168.100.201
       ansible_ssh_user: root
 
 lighthouse:
   hosts:
     lighthouse-test:
-      ansible_host: 192.168.100.250
+      ansible_host: 192.168.100.202
       ansible_ssh_user: root
