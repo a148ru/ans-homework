@@ -6,5 +6,5 @@ resource "local_file" "inventory" {
       username = var.username
     }
   )
-  filename = "../playbook-use-roles/inventory/prod.yml"
+  filename = "../playbook/inventory/prod.yml"
 }

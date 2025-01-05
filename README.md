@@ -32,7 +32,17 @@ lighthouse:
 
 ```
 
-### 2. Запуск playbook
+### 2. Зависимости
+
+https://github.com/AlexeySetevoi/ansible-clickhouse
+https://github.com/a148ru/vector-role
+https://github.com/a148ru/lighthouse-role
+
+```shell
+ansible-galaxy role install -r requirements.yml
+```
+
+### 3. Запуск playbook
 
 ```bash
 $ ansible-playbook -i inventory/prod.yml playbook.yml
