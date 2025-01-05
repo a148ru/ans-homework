@@ -1,0 +1,68 @@
+---
+- name: Get Vector archive
+  become: true
+  block:
+    - name: Make directory for Unarchive Vector
+      ansible.builtin.file:
+        path: "/vector"
+        state: "directory"
+        mode: '0755'
+    - name: Download Vector archive
+      ansible.builtin.get_url:
+        url: https://packages.timber.io/vector/{{ vector_version }}/{{ vector_arh_file }}.tar.gz
+        dest: /tmp/{{ vector_arh_file }}.tar.gz
+        mode: '0755'
+    - name: Unarchive Vector
+      ansible.builtin.unarchive:
+        src: /tmp/{{ vector_arh_file }}.tar.gz
+        remote_src: true
+        dest: /vector
+- name: Configure service Vector
+  become: true
+  block:
+    - name: Make dir
+      ansible.builtin.file:
+        path: "/etc/vector"
+        state: directory
+        mode: '0755'
+    - name: Config vector
+      ansible.builtin.template:
+        src: templates/vector.yaml
+        dest: /etc/vector/vector.yaml
+        mode: '0655'
+      notify: Restart vector
+    - name: Add the group vector
+      ansible.builtin.group:
+        name: vector
+        state: present
+    - name: Add the user vector
+      ansible.builtin.user:
+        name: vector
+        shell: /sbin/nologin
+        group: vector
+        create_home: false
+        system: true
+    - name: Make dir
+      ansible.builtin.file:
+        path: "/var/lib/vector"
+        state: directory
+        owner: vector
+        group: vector
+        mode: '0755'
+    - name: Copy vector exec
+      ansible.builtin.copy:
+        src: /vector/vector-x86_64-unknown-linux-musl/bin/vector
+        remote_src: true
+        dest: /usr/bin/vector
+        group: root
+        owner: root
+        mode: '0755'
+    - name: Add vector.service in systemd
+      ansible.builtin.copy:
+        src: /vector/vector-x86_64-unknown-linux-musl/etc/systemd/vector.service
+        remote_src: true
+        dest: /etc/systemd/system/vector.service
+        owner: root
+        group: root
+        mode: '0655'
+      notify: Restart vector
